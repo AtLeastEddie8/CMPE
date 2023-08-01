@@ -1,0 +1,17 @@
+SEGMENT B STRUCTURE
+
+module proj1B(a,b,c,d,B);//output for signal B
+   input a,b,c,d;
+   output B;
+   wire   w1,w2,w3,w4;
+
+   not n1 (w1,b);
+   or o1 (w2,w1,a);
+
+   xor xo1 (w4,c,d);
+   not n2 (w3,w4);
+
+
+   or o2 (B,w2,w3);
+
+endmodule

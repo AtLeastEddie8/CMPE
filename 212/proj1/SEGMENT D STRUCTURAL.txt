@@ -1,0 +1,26 @@
+SEGMENT D STRUCTURAL
+module proj1D(a,b,c,d,D);
+   input a,b,c,d;
+   output D;
+   wire   w1,w2,w3,w4,w5,w6,w7,w8,w9,w10,w11,w12,w13;
+
+   not n1 (w1,a);// ~a
+   not n2 (w2,b);// ~b
+   not n3 (w3,c);// ~c
+   not n4 (w4,d);// ~d
+
+   and a1 (w5,w2,w3,w4);
+   and a2 (w6,w1,w2,c);
+
+   or o1 (w7,w5,w6);
+
+   and a3 (w8,w1,c);
+   and a4 (w9,w4,w8);
+   and a5 (w10,w1,b);
+   and a6 (w11,w3,d);
+   and a7 (w12,w10,w11);
+
+   or o2 (w13,w9,w12);
+   or o3 (D,w7,w13);
+
+endmodule // proj1D

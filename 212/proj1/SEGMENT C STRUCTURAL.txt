@@ -1,0 +1,14 @@
+SEGMENT C STRUCTURAL
+module proj1C(a,b,c,d,C);//output for signal C
+   input a,b,c,d;
+   output C;
+   wire   w1,w2,w3,w4;
+
+   not n1 (w1,b);
+   not n2 (w2,c);
+
+   or o1 (w3,w2,d);
+   or o2 (w4,b,a);
+   or o3 (C,w3,w4);
+
+endmodule // proj1C

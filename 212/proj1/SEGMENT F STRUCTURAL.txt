@@ -1,0 +1,21 @@
+SEGMENT F STRUCTURAL
+module proj1F(a,b,c,d,F);
+   input a,b,c,d;
+   output F;
+   wire   w1,w2,w3,w4,w5,w6,w7;
+
+   not n1 (w1,c);// ~c
+   not n2 (w2,d);// ~d
+
+   and a1 (w3,w1,w2);
+   or o1 (w4,w3,a);
+
+   and a2 (w5,b,w2);
+
+   or o2 (w6,w4,w5);
+
+   and a3 (w7,b,w1);
+
+   or o3 (F,w6,w7);
+
+endmodule // proj1F

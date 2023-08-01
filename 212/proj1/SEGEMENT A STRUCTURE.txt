@@ -1,0 +1,21 @@
+SEGEMENT A STRUCTURE
+module proj1A(a,b,c,d,A);//output for signal A
+   input a,b,c,d;
+   output A;
+   wire   w1,w2,w3,w4,w5,w6,w7,w8,w9;
+
+   not n1 (w6, a);
+   not n2 (w7, b);
+   not n3 (w8, c);
+   not n4 (w9, d);
+
+   and a1 (w1,w6,c);
+   and a2 (w2,w6,b);
+   and a3 (w3,w2,d);
+   and a4 (w5, w9, w8, w7);
+
+   or o1 (w4, w1, w3);
+   or o2 (A, w4, w5);
+
+
+endmodule

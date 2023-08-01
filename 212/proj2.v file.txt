@@ -1,0 +1,86 @@
+module jkff(q,q_,j,k,clk,clear,set);
+
+   input j,k,clk,clear,set;
+   output q,q_;
+   reg    q,q_;
+
+always@(negedge clk or negedge clear or negedge set)
+  begin
+
+     if(~clear)
+       begin
+          q <= 1'b0;
+          q_ <= 1'b1;
+       end
+
+     else if(~set)
+       begin
+          q <= 1'b1;
+          q_ <= 1'b0;
+       end
+     else
+       begin
+          case({j,k})
+            2'b000;
+            begin
+               q <= q;
+               q_ <= q;
+            end
+            begin
+               q <= 1'b1;
+               q_ <= ~q_;
+            end
+          endcase // case ({j,k})
+       end // else: !if(~set)
+  end // always@ (negedge clk or negedge clear or negedge set)
+endmodule // jkff
+
+module clock(clk);
+   output clk;
+   reg    clk;
+   initial
+     begin
+        clk = 1;
+     end
+   always
+     begin
+        #5 clk = ~clk;
+     end
+endmodule // clock
+module coinToBillConverter(y1,y2,y3,y4,j1,j2,j3,j4,k1,k2,k3,k4,x,z);
+   input x;
+   output z;
+   wire   w1,w2,w3,w4,w5,w6,w7,w8,w9,w10,w11,w12,w13,w14,w15,w16,w17,w18,w19,w20,w21,w22,w23,w24,w25;
+
+   not n1 (w1,x);
+   not n2 (w4,y1);
+   not n3 (w6,y2);
+//J1 input---------------------
+   and a1 (w10,w5,w7,w9);
+   xor x1 (w9,w2,w8);
+//K1 input---------------------
+   //w11 is vcc
+//J2/K2 INPUT--------------------
+   and a2 (w12,w1,w7);
+   and a3 (w13,w1,w7,w8);
+   or o1 (w14,w12,w13);
+//J3 input
+   and a4 (w18,w4,w2);
+   or o2 (w15,w8,w18);
+//K3 input
+   or o3 (w16,w8,w2);
+//J4 input
+   xor x2 (w19,w2,w3);
+   not n4 (w20,w19);
+//K4 input
+   and a5 (w21,w7,w6);
+   or o4 (w23,w21,w1);
+//Z output
+   and a6 (w24,w7,w8,w5,w2);
+   or o5 (w25,w24,w3);
+
+endmodule // coinToBillConverter
+
+
+
+-UU-:----F1  proj2.v        Top L1     (Verilog) --------------------------------------------

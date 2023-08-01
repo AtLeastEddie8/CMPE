@@ -1,0 +1,28 @@
+SEGMENT F TESTBENCH
+module proj1Fb();
+   reg [3:0] switches;
+   wire      Ff;
+   reg       a_sign, b_sign, c_sign, d_sign;
+   proj1F proj1F(.a(a_sign), .b(b_sign),.c(c_sign), .d(d_sign), .F(Ff));
+
+   initial
+     begin
+        switches = 4'b 0000;
+        a_sign = 1'b 0;
+        b_sign = 1'b 0;
+        c_sign = 1'b 0;
+        d_sign = 1'b 0;
+        $display("a b c d F\n");
+        #170 $finish;
+     end
+   always
+     begin
+        a_sign = switches[3];
+        b_sign = switches[2];
+        c_sign = switches[1];
+        d_sign = switches[0];
+
+        #10 $display("%b %b %b %b %b", a_sign, b_sign, c_sign, d_sign, Ff);
+        switches = switches + 4'b 0001;
+     end
+endmodule // proj1Fb
